@@ -1,35 +1,46 @@
-let formElement = document.querySelector(".js-form");
-let amountElement = document.querySelector(".js-amount");
-let currencyElement = document.querySelector(".js-currency");
-let resultElement = document.querySelector(".js-result");
+{
+    const calculateResult = (amount, currency) => {
 
-let rateEUR = 4.1765;
-let rateUSD = 3.8596;
-let rateGBP = 4.9747;
+        const rateEUR = 4.1765;
+        const rateUSD = 3.8596;
+        const rateGBP = 4.9747;
 
-formElement.addEventListener("submit", (event) => {
-    event.preventDefault();
+        switch (currency) {
+            case "EUR":
+                return amount / rateEUR;
 
+            case "USD":
+                return amount / rateUSD;
 
-let amount = +amountElement.value;
-let currency = currencyElement.value;
+            case "GBP":
+                return amount / rateGBP;
+        }
+    };
 
-let result;
+    const updateResultText = (amount, result, currency) => {
+        const resultElement = document.querySelector(".js-result");
+        resultElement.innerHTML = `${amount} PLN =${result} ${currency}`;
+    }
+    const onFormSubmit = (event) => {
+        event.preventDefault();
 
-switch (currency) {
-    case "EUR":
-        result = amount / rateEUR;
-        break;
+        const amountElement = document.querySelector(".js-amount");
+        const currencyElement = document.querySelector(".js-currency");
 
-    case "USD":
-        result = amount / rateUSD;
-        break;
+        const amount = +amountElement.value;
+        const currency = currencyElement.value;
 
-    case "GBP":
-        result = amount / rateGBP;
-        break;
+        const result = calculateResult(amount, currency);
+
+        updateResultText(amount, result, currency);
+    };
+
+    const init = () => {
+
+        const formElement = document.querySelector(".js-form");
+        formElement.addEventListener("submit", onFormSubmit);
+
+    };
+
+    init();
 }
-
-resultElement.innerHTML = `${amount} PLN =${result} ${currency}`;
-
-});
