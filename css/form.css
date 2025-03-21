@@ -1,16 +1,30 @@
+.element {
+    margin: 0 auto;
+    width: max-content;
+    height: max-content;
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .form {
-    margin: 10px;
+    margin-top: 70px;
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
 }
 
 .form__labelText {
-width: 150px;
+width: 100px;
 display: inline-block;
 margin-right: 5px;
 }
 
 .form__fieldset {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 50px;
     width: 100%;
     border-radius: 5px;
     border-radius: 5px;
